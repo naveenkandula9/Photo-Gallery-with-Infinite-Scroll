@@ -1,0 +1,126 @@
+Act as a senior frontend developer and UI/UX designer with 10 years of experience. Build a complete, polished, responsive React application for the Exactspace Photo Gallery assignment.
+
+This is a **separate project** from my existing chat application. Do not modify or overwrite the chat app.
+
+First, provide a short implementation plan. Then build the application, test the required functionality, and explain how I can run it and submit it to the company.
+
+## Company’s assignment
+
+Create a single-page photo gallery using the paginated Picsum API:
+
+```text
+https://picsum.photos/v2/list?page=1
+https://picsum.photos/v2/list?page=2
+https://picsum.photos/v2/list?page=3
+```
+
+The application must:
+
+1. Fetch and display photos in a **single-column list**.
+2. Use each photo’s `download_url` to display the image.
+3. Show the photo’s `author` name.
+4. When the user reaches the bottom, fetch the next page and **append** the new photos to the existing list.
+5. Continue until the API returns a page with no more data.
+6. Show a **Font Awesome thumbs-up icon** and a like count next to each photo.
+7. Initialize each photo’s count to `0`.
+8. Increase that photo’s count by one on **every click**, including repeated clicks.
+9. Keep the like counts independent for each photo.
+10. Use CSS to make the page similar in structure to the supplied reference image, while improving the overall visual design.
+
+## Technology
+
+- React with Vite and JavaScript.
+- CSS or another suitable, maintainable styling approach.
+- Fetch API or another appropriate method for API requests.
+- Font Awesome for the thumbs-up icon, as explicitly required by the company.
+- No backend, database, authentication, or paid services are necessary for the core assignment.
+
+## Design direction
+
+Use the company’s reference image as the starting point: a vertical list where each item shows a photo, its author, and a thumbs-up button.
+
+Make the interface more polished while preserving that **one-column structure**:
+
+- Add a compact header with a suitable title such as **Photo Gallery**.
+- Use a clean background, readable typography, consistent spacing, and a restrained color palette.
+- Display each photo in a neatly styled row or card.
+- On desktop, place the image and its author/like information next to each other.
+- On narrow screens, allow the information to move below the image while keeping the gallery in one column.
+- Keep the thumbs-up icon and like count clearly visible and easy to click.
+- Use subtle hover and focus states. Avoid excessive animations, large decorative sections, and clutter.
+- Make images look consistent without stretching or distorting them.
+- Give each image suitable alternative text using the author’s name where appropriate.
+- Ensure buttons are accessible by keyboard, have clear labels, and meet reasonable contrast and touch-size requirements.
+- Respect reduced-motion preferences.
+
+Do not turn the gallery into a multi-column masonry grid. The company specifically asks for a single-column view.
+
+## Infinite scrolling behavior
+
+Implement reliable infinite scrolling:
+
+- Fetch page `1` when the application opens.
+- Detect when the user approaches the bottom of the list and request the next page.
+- Append the new items without removing earlier photos.
+- Continue until the API returns an empty page, then stop requesting pages and show an **“End of gallery”** message.
+- Prevent duplicate or overlapping page requests while a fetch is already in progress.
+- Avoid duplicate photo entries where possible.
+- Do not treat a network or API error as the end of the gallery.
+- Show an initial loading state and a smaller loading indicator when more photos are being fetched.
+- If a request fails, show a helpful message with a **Retry** button that retries the failed page.
+- Clean up observers or event listeners properly.
+- Use an appropriate API loading strategy and lazy-load images where useful.
+
+## Like button behavior
+
+- Use the Font Awesome thumbs-up icon.
+- Start each photo’s count at `0`.
+- Increment the count by one every time its button is clicked.
+- Keep counts independent for each photo, using a stable photo identifier.
+- Do not implement a like/unlike toggle or limit a user to one click.
+- Keep the required behavior simple. Counts may reset when the page is refreshed; do not claim they are shared or permanently saved.
+
+## Error handling and usability
+
+- Handle API loading failures and broken images gracefully.
+- Include a clear empty state if no photos are returned.
+- Ensure the app remains usable with keyboard navigation.
+- Avoid horizontal scrolling and overlapping controls on mobile.
+- Do not add search, login, uploads, comments, filters, or other unrelated features that could distract from the assignment.
+
+## Code quality
+
+- Organize the app into clear, reusable components.
+- Keep the API-fetching logic separate from the photo display where practical.
+- Use stable keys for list items.
+- Write readable code with a clear folder structure.
+- If a CORS issue occurs, investigate and explain it. Use an appropriate development proxy only if needed; do not claim a development proxy will automatically work after deployment.
+- Avoid adding unnecessary dependencies.
+
+## Testing
+
+Run the available checks and verify:
+
+1. Page 1 loads with an image and author for each item.
+2. Scrolling loads page 2 and appends it to page 1.
+3. Further scrolling loads subsequent pages.
+4. Loading stops when an empty page is received.
+5. A failed request can be retried without losing existing photos.
+6. Repeated clicks on one photo’s thumbs-up button increase only its own count.
+7. Font Awesome’s thumbs-up icon is used.
+8. The layout remains one column and works on mobile and desktop.
+
+Use meaningful automated tests where practical, and identify which checks were performed manually. Do not claim a feature or test works unless it has been verified.
+
+## Deliverables
+
+Provide:
+
+1. Complete source code and a clear project folder structure.
+2. A `README.md` with prerequisites, installation commands, how to run the app, how infinite scrolling works, and how likes behave.
+3. Instructions for running any tests.
+4. Any known limitations or deployment configuration.
+5. A short, simple explanation of the project so I can explain the components, API calls, infinite scrolling, and likes in an interview.
+6. Steps for pushing the completed project to a **public GitHub repository**.
+
+The company specifically asks me to email the public repository link. Do not send an email or publish the repository on my behalf unless I explicitly ask you to do so.
